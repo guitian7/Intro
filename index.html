@@ -8,13 +8,29 @@
     <body>
         <div id="shopping-list">
             <h1>{{header ? header: 'Welcome'}}</h1>
+                <input 
+                @keyup.enter="items.push(newItem)"
+                type="text" v-model="newItem" placeholder="Add New Item">
+                <button 
+                @click="items.push(newItem)"
+                class="btn btn-primary">Save Item</button>
+            <div class="add-item-form"></div>
+            <ul>
+                <li v-for="item in items">{{item}}</li>
+            </ul>
         </div>
         <script src="https://unpkg.com/vue@3"></script>
         <script>
             const shoppingList = Vue.createApp({
                 data(){
                     return{
-                         header: "Shopping List App"
+                         header: "Shopping List App",
+                         newItem:'',
+                         items:[    
+                            '10 party hats',
+                            '2 board games',
+                            '20 cups' 
+                         ]
                     }
                 }
             })
